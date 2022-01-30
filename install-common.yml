@@ -1,0 +1,6 @@
+---
+# Playbook to install common software on Mac
+
+- hosts: all
+  roles:
+    - common

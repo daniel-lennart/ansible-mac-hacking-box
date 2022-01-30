@@ -2,6 +2,15 @@
 
 # Install development tools
 xcode-select --install
+sleep 1
+osascript <<-EOD
+    tell application "System Events"
+      tell process "Install Command Line Developer Tools"
+        keystroke return
+        click button "Agree" of window "License Agreement"
+      end tell
+    end tell
+EOD
 sudo xcodebuild -license
 
 # Allow Intel apps to run on Apple Silicone chips
@@ -13,4 +22,4 @@ python3 get-pip.py
 sudo pip3 install --ignore-installed ansible
 
 # Install required Galaxy roles
-ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r galaxy-requirements.yml

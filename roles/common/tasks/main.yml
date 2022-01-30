@@ -1,0 +1,33 @@
+- name: Install Homebrew
+  incule_role:
+    name: geerlingguy.mac.homebrew
+
+- name: Add Homebrew to path
+  ansible.builtin.lineinfile:
+    path: /etc/paths
+    state: present
+    line: '/opt/homebrew/bin'
+    become: true
+    become_user: root
+
+- name: Add Homebrew custom repositories
+  community.general.homebrew_tap:
+    name: [
+      hemobrew/cask-versions
+    ]
+
+- name: Install common packages via casks
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+  ignore_errors: yes
+  with_items:
+    - docker
+    - google-chrome
+    - firefox
+    - iterm2
+    - slack
+    - sublime-text
+    - telegram
+    - visual-studio-code
+    - zoom
+    - keepassxc
