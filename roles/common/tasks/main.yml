@@ -13,7 +13,7 @@
 - name: Add Homebrew custom repositories
   community.general.homebrew_tap:
     name: [
-      hemobrew/cask-versions
+      homebrew/cask-versions
     ]
 
 - name: Install common packages via casks
